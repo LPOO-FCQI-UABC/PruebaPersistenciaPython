@@ -1,16 +1,28 @@
-# This is a sample Python script.
+import concurrent.futures
+import threading
+import time
+import random
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+from MyClass import MyClass
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def pepito(name):
+    print(f"Thread {name}: starting")
+    max = random.randint(1, 10)
+    for i in range(0, max):
+        print(f"Thread {name}: working {i}/{max}")
+        time.sleep(2)
+    print(f"Thread {name}: finishing")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+
+    threads = list()
+
+    for index in range(3):
+        print(f"Main    : create and start thread {index}.")
+        my_object = MyClass(f"My object {index}")
+        x = threading.Thread(target=my_object.run)
+        x.start()
+        threads.append(x)
+
+    print("Done.")
