@@ -5,15 +5,6 @@ import random
 
 from MyClass import MyClass
 
-
-def pepito(name):
-    print(f"Thread {name}: starting")
-    max = random.randint(1, 10)
-    for i in range(0, max):
-        print(f"Thread {name}: working {i}/{max}")
-        time.sleep(2)
-    print(f"Thread {name}: finishing")
-
 if __name__ == "__main__":
 
     threads = list()
